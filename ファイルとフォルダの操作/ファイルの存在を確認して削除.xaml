@@ -57,9 +57,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID3</x:Reference>
+      <x:Reference>__ReferenceID4</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID3">
+    <FlowStep x:Name="__ReferenceID4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,127.5</av:Point>
@@ -85,6 +85,7 @@
               <av:Point x:Key="ShapeLocation">260.686666666667,228.5</av:Point>
               <av:Size x:Key="ShapeSize">79,87</av:Size>
               <av:PointCollection x:Key="TrueConnector">260.686666666667,272 10,272 10,350 40,350</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">339.686666666667,272 480,272 480,344.02</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
@@ -122,11 +123,38 @@
               </FlowStep.Next>
             </FlowStep>
           </FlowDecision.True>
+          <FlowDecision.False>
+            <FlowStep x:Name="__ReferenceID3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">380,344.02</av:Point>
+                  <av:Size x:Key="ShapeSize">200,51</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MessageBox ChosenButton="{x:Null}" Caption="注意" DisplayName="メッセージ ボックス" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;ファイルありませーん。&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MessageBox>
+            </FlowStep>
+          </FlowDecision.False>
         </FlowDecision>
       </FlowStep.Next>
     </FlowStep>
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
+    <FlowStep>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">40,511</av:Point>
+          <av:Size x:Key="ShapeSize">200,51</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="メッセージ ボックス" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="MessageBox_3" />
+    </FlowStep>
+    <x:Reference>__ReferenceID3</x:Reference>
   </Flowchart>
 </Activity>
