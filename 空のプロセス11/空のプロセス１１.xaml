@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>680,801</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>654,801</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>フローチャート2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -79,19 +79,19 @@
           <av:Size x:Key="ShapeSize">200,51</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="530,936" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="課題３\科目成績クラスデータ（dummy）.xlsm">
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="530,1035" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="課題３\科目成績クラスデータ（dummy）.xlsm">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="496,827" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="496,926" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="454,961" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="454,834" sap2010:WorkflowViewState.IdRef="Sequence_1">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="ui:GenericValue" Name="学籍番号" />
                   <Variable x:TypeArguments="x:Int32" Name="counter" />
@@ -110,9 +110,9 @@
                     <InArgument x:TypeArguments="x:Int32">1</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:InterruptibleWhile DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="412,769" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                <ui:InterruptibleWhile DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="412,642" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                   <ui:InterruptibleWhile.Body>
-                    <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="376,604" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="376,477" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="variable1" />
                       </Sequence.Variables>
@@ -128,7 +128,6 @@
                       </ui:ExcelReadCell>
                       <ui:ExcelWriteCell Cell="[&quot;A&quot;+(counter*2+7).ToString]" DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="学年末単位認定試験成績台帳(記録)" Text="[学籍番号]" />
                       <ui:ExcelReadCell Result="{x:Null}" Cell="[&quot;B&quot;+(counter+2).ToString]" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_2" SheetName="ITP（ストラテジー）" />
-                      <ui:ExcelWriteCell SheetName="{x:Null}" Text="{x:Null}" Cell="A1" DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" />
                       <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
