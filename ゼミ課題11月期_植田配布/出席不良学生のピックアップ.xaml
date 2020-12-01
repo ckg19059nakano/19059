@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="出席不良学生のピックアップ" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="出席不良学生のピックアップ" this:出席不良学生のピックアップ.sheetname="2年情報メディア_8月 " xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="argument1" Type="InArgument(x:Int32)" />
+    <x:Property Name="sheetname" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -34,6 +34,8 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -73,21 +75,19 @@
       <Variable x:TypeArguments="x:Int32" Default="3" Name="NINZU" />
       <Variable x:TypeArguments="ui:GenericValue" Name="cellvalue" />
       <Variable x:TypeArguments="scg:List(x:String)" Default="[new list(of string)]" Name="GakuseiNo" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="GakuseiRatio">
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="GakuseiRatio" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="dGetu" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="dKa" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="dSui" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="dMoku" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dKin">
         <Variable.Default>
           <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="new Dictionary( of String,String)" />
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dGetu">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="new Dictionary( of String,)" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dKa" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dSui" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dMoku" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dKin" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="GakuseiName" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary( of String,String)]" Name="GakuseiName" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Name" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Ratio" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -98,28 +98,29 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID1</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID0">
+    <FlowStep x:Name="__ReferenceID1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,127.5</av:Point>
           <av:Size x:Key="ShapeSize">200,51</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,178.5 300,228.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="638,964" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="files\課題２\出席率_大橋校（２年：渡邉）RPA (2).xlsx">
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="files\課題２\出席率_大橋校（２年：渡邉）RPA (2).xlsx">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="604,855" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="667,1306" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="625,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:Int32">[rendindex]</OutArgument>
                 </Assign.To>
@@ -127,17 +128,62 @@
                   <InArgument x:TypeArguments="x:Int32">[rindex+NINZU]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:InterruptibleWhile Condition="[rindex&lt;rendindex]" DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="562,663" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+              <ui:InterruptibleWhile Condition="[rindex&lt;rendindex]" DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="625,1114" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                 <ui:InterruptibleWhile.Body>
-                  <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="526,498" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="589,949" sap2010:WorkflowViewState.IdRef="Sequence_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExcelReadCell Result="{x:Null}" Cell="A1" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="Sheet1" />
-                    <If DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_1" />
-                    <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_2" />
+                    <ui:ExcelReadCell Cell="[&quot;K&quot;+rindex.ToString]" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="547,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="[sheetname]">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[cellvalue]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <If Condition="[cellvalue&lt;0.85]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="547,758" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,611" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ExcelReadCell Cell="[&quot;F&quot;+rindex.ToString]" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_3" SheetName="[sheetname]">
+                            <ui:ExcelReadCell.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[cellvalue]</OutArgument>
+                            </ui:ExcelReadCell.Result>
+                          </ui:ExcelReadCell>
+                          <AddToCollection x:TypeArguments="x:String" Collection="[GakuseiNo]" DisplayName="コレクションに追加" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3" Item="[cellvalue]" />
+                          <ui:ExcelReadCell Cell="[&quot;G&quot;+rindex.ToString]" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="[sheetname]">
+                            <ui:ExcelReadCell.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[name]</OutArgument>
+                            </ui:ExcelReadCell.Result>
+                          </ui:ExcelReadCell>
+                          <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[GakuseiName(cellvalue)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[Name]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ExcelReadCell Cell="[&quot;K&quot;+rindex.ToString]" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_5" SheetName="[sheetname]">
+                            <ui:ExcelReadCell.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[Ratio]</OutArgument>
+                            </ui:ExcelReadCell.Result>
+                          </ui:ExcelReadCell>
+                          <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[GakuseiRatio(cellvalue)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[Name]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                    </If>
                   </Sequence>
                 </ui:InterruptibleWhile.Body>
               </ui:InterruptibleWhile>
@@ -150,6 +196,73 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ExcelApplicationScope>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,228.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,51</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="502,781" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="files\課題２\CKGBC_生活指導報告資料(ｄｕｍｍｙ).xlsx">
+            <ui:ExcelApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="468,672" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ParallelForEach x:TypeArguments="x:String" DisplayName="並列繰り返し (コレクションの各要素)" sap:VirtualizedContainerService.HintSize="426,580" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_1" Values="[GakuseiNo]">
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExcelWriteCell DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="報告資料" Text="[item]">
+                          <ui:ExcelWriteCell.Cell>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </ui:ExcelWriteCell.Cell>
+                        </ui:ExcelWriteCell>
+                        <ui:ExcelWriteCell DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="報告資料" Text="[GakuseiName(item)]">
+                          <ui:ExcelWriteCell.Cell>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </ui:ExcelWriteCell.Cell>
+                        </ui:ExcelWriteCell>
+                        <ui:ExcelWriteCell DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="報告資料" Text="[GakuseiRatio(item)]">
+                          <ui:ExcelWriteCell.Cell>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </ui:ExcelWriteCell.Cell>
+                        </ui:ExcelWriteCell>
+                      </Sequence>
+                    </ActivityAction>
+                  </ParallelForEach>
+                </Sequence>
+              </ActivityAction>
+            </ui:ExcelApplicationScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExcelApplicationScope>
+        </FlowStep>
+      </FlowStep.Next>
     </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
   </Flowchart>
 </Activity>
