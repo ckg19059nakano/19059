@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="673,2749" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="934,519" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -59,43 +59,51 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="680,2584" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="638,2492" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="C:\Users\19059\Documents\UiPath\カレンダー.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel アプリケーション スコープ" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="C:\Users\19059\Documents\UiPath\カレンダー.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="604,2383" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="604,2864" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <Sequence.Variables>
-              <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="youbi2cellname">
+              <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="youbi2colname">
                 <Variable.Default>
-                  <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="new Dictionary(of string,string)from{{&quot;Sun&quot;,&quot;A&quot;},{&quot;Mom&quot;,&quot;B&quot;},{&quot;Thu&quot;,&quot;C&quot;},{&quot;Wed&quot;,&quot;D&quot;},{&quot;The&quot;,&quot;E&quot;},{&quot;Fri&quot;,&quot;F&quot;},{&quot;Sat&quot;,&quot;G&quot;}}" />
+                  <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="new Dictionary(of string,string)from{{&quot;Sun&quot;,&quot;A&quot;},{&quot;Mon&quot;,&quot;B&quot;},{&quot;Tue&quot;,&quot;C&quot;},{&quot;Wed&quot;,&quot;D&quot;},{&quot;Thu&quot;,&quot;E&quot;},{&quot;Fri&quot;,&quot;F&quot;},{&quot;Sat&quot;,&quot;G&quot;}}" />
                 </Variable.Default>
               </Variable>
               <Variable x:TypeArguments="x:String" Name="yy" />
               <Variable x:TypeArguments="x:String" Name="mm" />
-              <Variable x:TypeArguments="s:DateTime" Name="calDate" />
+              <Variable x:TypeArguments="s:DateTime" Name="colDate" />
               <Variable x:TypeArguments="x:String" Name="strYoubi" />
               <Variable x:TypeArguments="ui:GenericValue" Name="moji" />
               <Variable x:TypeArguments="x:String" Name="col" />
               <Variable x:TypeArguments="x:Int32" Name="day" />
               <Variable x:TypeArguments="x:Int32" Name="line" />
+              <Variable x:TypeArguments="x:String" Name="cellName" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:ExcelReadCell Cell="A1" DisplayName="セルを読み込み" sap:VirtualizedContainerService.HintSize="562,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="Sheet1">
               <ui:ExcelReadCell.Result>
                 <OutArgument x:TypeArguments="ui:GenericValue">[moji]</OutArgument>
               </ui:ExcelReadCell.Result>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:ExcelReadCell>
             <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
@@ -120,19 +128,19 @@
             </Assign>
             <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
-                <OutArgument x:TypeArguments="s:DateTime">[calDate]</OutArgument>
+                <OutArgument x:TypeArguments="s:DateTime">[colDate]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="s:DateTime">[new DateTime(Integer.Parse(yy),Integer.Parse(mm),1)]</InArgument>
               </Assign.Value>
             </Assign>
-            <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="562,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[calDate.ToString]" />
+            <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="562,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[colDate.ToString]" />
             <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strYoubi]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[calDate.ToString("ddd")]</InArgument>
+                <InArgument x:TypeArguments="x:String">[colDate.ToString("ddd")]</InArgument>
               </Assign.Value>
             </Assign>
             <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="562,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[strYoubi]" />
@@ -149,7 +157,7 @@
                 <OutArgument x:TypeArguments="x:String">[col]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[youbi2cellname.Item(strYoubi)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[youbi2colname.Item(strYoubi)]</InArgument>
               </Assign.Value>
             </Assign>
             <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_7">
@@ -160,12 +168,9 @@
                 <InArgument x:TypeArguments="x:Int32">1</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:InterruptibleWhile DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="562,1191" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+            <ui:InterruptibleWhile DisplayName="繰り返し (前判定)" sap:VirtualizedContainerService.HintSize="562,1291" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="526,1026" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="cellName" />
-                  </Sequence.Variables>
+                <Sequence DisplayName="本体" sap:VirtualizedContainerService.HintSize="526,1126" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -173,7 +178,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                     <Assign.To>
-                      <OutArgument x:TypeArguments="s:DateTime">[calDate]</OutArgument>
+                      <OutArgument x:TypeArguments="s:DateTime">[colDate]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="s:DateTime">[New DateTime(Integer.Parse(yy),Integer.Parse(mm),day)]</InArgument>
@@ -184,7 +189,7 @@
                       <OutArgument x:TypeArguments="x:String">[strYoubi]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[calDate.ToString("ddd")]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[colDate.ToString("ddd")]</InArgument>
                     </Assign.Value>
                   </Assign>
                   <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_10">
@@ -192,7 +197,15 @@
                       <OutArgument x:TypeArguments="x:String">[col]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[youbi2cellname.item(strYoubi)]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[youbi2colname.item(strYoubi)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[line]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">4</InArgument>
                     </Assign.Value>
                   </Assign>
                   <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_11">
@@ -200,10 +213,10 @@
                       <OutArgument x:TypeArguments="x:Int32">[day]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[day+1]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32">1</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <If Condition="[strYoubi=&quot;sun&quot;]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[strYoubi=&quot;Sun&quot;]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
                       <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                         <Assign.To>
@@ -223,7 +236,7 @@
                       <InArgument x:TypeArguments="x:String">[col+line.ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:ExcelWriteCell Cell="[cellName]" DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Sheet1" Text="[day.ToString]" />
+                  <ui:ExcelWriteCell Cell="[cellName.ToString]" DisplayName="セルに書き込み" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Sheet1" Text="[day.ToString]" />
                   <Assign DisplayName="代入" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[day]</OutArgument>
@@ -237,10 +250,25 @@
               <ui:InterruptibleWhile.Condition>
                 <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="day&lt;=31" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
               </ui:InterruptibleWhile.Condition>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:InterruptibleWhile>
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="UipathExcelBorder.bas" DisplayName="VBA を呼び出し" EntryMethodName="Border_Lattice" EntryMethodParameters="[{&quot;sheet1&quot;,&quot;A3:G9&quot;,&quot;6&quot;,&quot;255&quot;,&quot;0&quot;,&quot;0&quot;}]" sap:VirtualizedContainerService.HintSize="562,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="UipathExcelBorder.bas" DisplayName="VBA を呼び出し" EntryMethodName="Border Lattice" EntryMethodParameters="[{&quot;sheet1&quot;,&quot;A3:G9&quot;,&quot;6&quot;,&quot;255&quot;,&quot;0&quot;,&quot;0&quot;}]" sap:VirtualizedContainerService.HintSize="562,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_2" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="UipathExcelBorder.bas" DisplayName="VBA を呼び出し" EntryMethodName="Border Lattice" EntryMethodParameters="[{&quot;sheet1&quot;,&quot;A3:G3&quot;,&quot;6&quot;,&quot;255&quot;,&quot;0&quot;,&quot;0&quot;}]" sap:VirtualizedContainerService.HintSize="562,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
   </Sequence>
 </Activity>
